@@ -25,7 +25,6 @@ Vue.component('loginform', {
                     const { message } = err.response.data
                     swal('Error!', message, 'error')
                 })
-
         }
     },
     template: `
