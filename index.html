@@ -31,8 +31,44 @@
     <div id="app">
 
         <!-- NAVBAR -->
-        <navbar v-bind:is-logged-in="isLoggedIn"></navbar>
+        <navbar
+        v-bind:is-logged-in="isLoggedIn"
+        v-on:logout="isLoggedIn = false"
+        v-on:get-home-page="currentPage = 'homepage'"
+        v-on:get-login-page="currentPage = 'login'"
+        v-on:get-register-page="currentPage = 'register'"
+        >
+        </navbar>
         <!-- END OF NAVBAR -->
+
+        <!-- HOME -->
+        <center>
+            <h1 v-if="currentPage == 'homepage'">Hello</h1>
+        </center>
+        <!-- END OF HOMEPAGE -->
+
+        <!-- LOGIN FORM -->
+        <loginForm
+        v-if="currentPage == 'login'"
+        v-on:submit="isLoggedIn = true"
+        v-on:redirect-to-dashboard="currentPage = 'dashboard'"
+        >
+        </loginForm>
+        <!-- END OF LOGIN FORM -->
+
+        <!-- REGISTER FORM -->
+        <registerForm
+            v-if="currentPage == 'register'"
+            v-on:redirect-to-login="currentPage = 'login'"
+        >
+        </registerForm>
+        <!-- END OF REGISTER FORM -->
+
+        <!-- DASHBOARD -->
+        <center>
+            <h1 v-if="currentPage == 'dashboard'">Dashboard</h1>
+        </center>
+        <!-- END OF DASHBOARD -->
 
     </div>
     <!-- VUE END -->
@@ -46,8 +82,13 @@
     <!-- VUE -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
 
+    <!-- AXIOS -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
     <!-- COMPONENTS -->
     <script src="./js/components/navbar.js"></script>
+    <script src="./js/components/loginForm.js"></script>
+    <script src="./js/components/registerForm.js"></script>
 
     <!-- JAVASCRIPT -->
     <script src="./js/main.js"></script>
@@ -63,12 +104,10 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 
-
     <!-- SWAL -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-    <!-- AXIOS -->
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
 
 
     <!---------------------------------------------------------------------------------------------->
