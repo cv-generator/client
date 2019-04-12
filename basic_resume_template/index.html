@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Basic Resume</title>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    .page {
+      background-color:#E4E3E9;
+      color: #4F4F50;
+      font-family: sans-serif;
+    }
+    .px6, section .item {
+      padding-left: 6em;
+      padding-right: 6em;
+    }
+    .text-bold {
+      font-weight: bold;
+    }
+    .text-darker {
+      color: #515053;
+    }
+    .header {
+      background-color: #3F4240;
+      color: #FEFEFE;
+      display: flex;
+      padding-top: 24px;
+      padding-bottom: 24px;
+    }
+    .header :first-child {
+      margin-right: 24px;
+    }
+    .header * {
+      margin: 8px 0;
+    }
+    .divider {
+      border-bottom: 5px solid #FEFEFE;
+    }
+    .fullname {
+      letter-spacing: 0.2em;
+    }
+    .intro {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    section {
+      margin: 16px 0;
+    }
+    section .title {
+      background-color: #CCCBCE;
+      padding-top: 12px;
+      padding-bottom: 12px;
+      letter-spacing: 0.2em;
+    }
+    section .item {
+      display: flex;
+      padding-top: 16px;
+    }
+    section .item > * {
+      margin: 24px 16px;
+      flex-basis: 50%;
+    }
+    section .item div:nth-child(2) > * {
+      margin-bottom: 8px;
+    }
+    section .item div:nth-child(2) > p:nth-child(2) {
+      line-height: 1.5em;
+    }
+    section .item ul {
+      list-style-type: square;
+    }
+    section .item ul li {
+      padding-left: 24px;
+    }
+    section .item.contact ul {
+      list-style-type: none;
+      margin-left: 0;
+    }
+    section .item.contact ul li {
+      margin: 24px 0;
+      padding-left: 0;
+    }
+    section .item.contact ul li i {
+      margin-right: 16px;
+    }
+    section .item.contact ul li:first-child {
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="header px6">
+      <figure>
+        <img src="https://dummyimage.com/300.png" alt="dummy profile picture">
+      </figure>
+      <div class="intro">
+        <h1 class="fullname">Uzumaki Naruto</h1>
+        <div class="divider"></div>
+        <p class="text-bold">Ninja</p>
+      </div>
+    </div>
+    <div class="main">
+      <section>
+        <p class="title text-bold px6">EXPERIENCE</p>
+        <div class="item">
+          <ul>
+            <li>
+              <p class="text-bold text-darker">Senior Graphic Designer</p>
+              <p>2020-2024</p>
+            </li>
+          </ul>
+          <div>
+            <p class="text-bold text-darker">Gullible Enterprise</p>
+            <p>Create a graphic designs for the different websites worldwide. Follow up with establish customers to offer additional products or services.</p>
+          </div>
+        </div>
+        <div class="item">
+          <ul>
+            <li>
+              <p class="text-bold text-darker">Senior Graphic Designer</p>
+              <p>2020-2024</p>
+            </li>
+          </ul>
+          <div>
+            <p class="text-bold text-darker">Gullible Enterprise</p>
+            <p>Create a graphic designs for the different websites worldwide. Follow up with establish customers to offer additional products or services.</p>
+          </div>
+        </div>
+        <div class="item">
+          <ul>
+            <li>
+              <p class="text-bold text-darker">Senior Graphic Designer</p>
+              <p>2020-2024</p>
+            </li>
+          </ul>
+          <div>
+            <p class="text-bold text-darker">Gullible Enterprise</p>
+            <p>Create a graphic designs for the different websites worldwide. Follow up with establish customers to offer additional products or services.</p>
+          </div>
+        </div>
+      </section>
+      <section>
+        <p class="title text-bold px6">CONTACT</p>
+        <div class="item contact">
+          <ul>
+            <li class="text-darker"><i class="fas fa-map-marker-alt"></i> Konoha Village</li>
+            <li class="text-darker"><i class="fas fa-phone"></i> +62 812 123456</li>
+            <li class="text-darker"><i class="far fa-envelope"></i> naruto@konoha.com</li>
+          </ul>
+        </div>
+      </section>
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+  <script>
+    // Script tag string
+    let scripts = Array.prototype.map.call(
+      document.getElementsByTagName('script'), 
+      script => script.outerHTML
+    ).join('')
+    
+    let body = '<body>'
+      + (document.getElementsByClassName('page')[0]).outerHTML
+      + scripts
+      + '<\/body>'
+    
+    let links = document.getElementsByTagName('link')
+    let styles = document.getElementsByTagName('style')
+    // Stylesheet string
+    let head = '<head><style>'
+      + Array.prototype.map.call(
+        links,
+        link => link.outerHTML
+      )
+      + Array.prototype.map.call(
+        styles,
+        style => style.outerHTML
+      )
+      + '<\/style><\/head>'
+    
+    console.log([0].outerHTML)
+    // axios.post('https://selectpdf.com/api2/convert/', {
+    //   key: '3f4dcbc8-da33-49b2-946d-35d4273e4eb5',
+    //   html: head + body // string to print into pdf
+    // },{
+    //   "Content-Type": "application/json",
+    //   responseType: "arraybuffer"
+    // })
+    //   .then(({ data }) => {
+    //     let pdf = new Blob([data], { type: 'application/pdf'})
+        
+    //     // pdf file url
+    //     let pdfFileURL = window.URL.createObjectURL(pdf);
+
+    //     let fileName = 'document.pdf'
+        
+    //     let a = document.createElement("a");
+    //     document.body.appendChild(a);
+    //     a.style = "display: none";
+    //     a.href = pdfFileURL;
+    //     a.download = fileName;
+    //     a.click(); 
+    //   })
+    //   .catch(err => console.log(err))
+  </script>
+</body>
+</html>

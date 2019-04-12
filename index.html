@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CV Generator</title>
+
+    <!-------------------------------------- SOURCES  ---------------------------------------------->
+
+    <!-- BOOTSTRAP -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/form.css">
+
+    <!-- Awesome font-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+    <!---------------------------------------------------------------------------------------------->
+
+</head>
+
+<body>
+    <!-- VUE START -->
+    <div id="app">
+
+        <!-- NAVBAR -->
+        <navbar v-bind:is-logged-in="isLoggedIn" v-on:logout="isLoggedIn = false"
+            v-on:get-home-page="currentPage = 'homepage'" v-on:get-login-page="currentPage = 'login'"
+            v-on:get-register-page="currentPage = 'register'" v-on:get-dashboard-page="currentPage = 'dashboard'">
+        </navbar>
+        <!-- END OF NAVBAR -->
+
+        <!-- HOME -->
+        <center>
+            <img v-if="currentPage == 'homepage'"
+                src="https://images.vexels.com/media/users/3/127285/isolated/preview/bbe634bfafb53eb845318ce4e6e5c9ac-business-people-working-on-laptop-by-vexels.png"
+                style="margin-top:3%">
+        </center>
+        <!-- END OF HOMEPAGE -->
+
+        <!-- LOGIN FORM -->
+        <loginForm v-if="currentPage == 'login'" v-on:submit="isLoggedIn = true"
+            v-on:redirect-to-dashboard="currentPage = 'dashboard'">
+        </loginForm>
+        <!-- END OF LOGIN FORM -->
+
+        <!-- REGISTER FORM -->
+        <registerForm v-if="currentPage == 'register'" v-on:redirect-to-login="currentPage = 'login'">
+        </registerForm>
+        <!-- END OF REGISTER FORM -->
+
+        <!-- DASHBOARD -->
+        <div v-if="currentPage == 'dashboard'">
+            <!-- FORM -->
+            <div class=" page" v-if="isLoggedIn">
+                <identity-field v-bind:preview="preview"></identity-field>
+                <div class="main">
+
+                    <experience-field v-bind:preview="preview"></experience-field>
+
+                    <education-field v-bind:preview="preview"></education-field>
+
+
+                    <section class="last-section">
+                        <contact-field v-bind:preview="preview"></contact-field>
+                        <skill-field v-bind:preview="preview"></skill-field>
+                    </section>
+                </div>
+            </div>
+            <!-- END FORM -->
+
+            <!-- PUBLISH BUTTON -->
+            <!-- END PUBLISH BUTTON -->
+
+
+            <!-- BUTTON FIX PREVIEW -->
+            <div id="preview-button">
+                <button type="button" v-on:click.prevent="publish" v-if="preview && isLoggedIn">CONVERT</button>
+                <button type="button" v-on:click.prevent="previewToggle" v-if="isLoggedIn">PREVIEW</button>
+            </div>
+            <!-- END  BUTTON FIX PREVIEW  -->
+        </div>
+        <!-- END OF DASHBOARD -->
+
+
+    </div>
+    <!-- VUE END -->
+
+
+
+
+
+    <!-------------------------------------- SOURCES  ---------------------------------------------->
+
+    <!-- VUE -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+
+    <!-- AXIOS -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <!-- COMPONENTS -->
+    <script src="./js/components/add-remove-button.js"></script>
+    <script src="./js/components/navbar.js"></script>
+    <script src="./js/components/loginForm.js"></script>
+    <script src="./js/components/registerForm.js"></script>
+    <script src="./js/components/education-list.js"></script>
+    <script src="./js/components/education-field.js"></script>
+    <script src="./js/components/experience-list.js"></script>
+    <script src="./js/components/experience-field.js"></script>
+    <script src="./js/components/identity-field.js"></script>
+    <script src="./js/components/skill-list.js"></script>
+    <script src="./js/components/skill-field.js"></script>
+    <script src="./js/components/contact-field.js"></script>
+
+
+    <!-- JAVASCRIPT -->
+    <script src="./js/main.js"></script>
+
+    <!-- BOOTSTRAP -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+    <!-- SWAL -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <!-- FACEBOOK SHARE -->
+    <script language="javascript">
+        function fbshareCurrentPage() { window.open("https://www.facebook.com/sharer/sharer.php?u=" + escape(`${app.cv_url}`) + "&t=", 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600'); return false; }
+    </script>
+
+
+    <!---------------------------------------------------------------------------------------------->
+
+
+</body>
+
+</html>
