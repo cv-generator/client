@@ -64,7 +64,7 @@
         <!-- DASHBOARD -->
         <div v-if="currentPage == 'dashboard'">
             <!-- FORM -->
-            <div class="page" v-if="isLoggedIn">
+            <div class=" page" v-if="isLoggedIn">
                 <identity-field v-bind:preview="preview"></identity-field>
                 <div class="main">
 
@@ -142,7 +142,10 @@
     <!-- SWAL -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-
+    <!-- FACEBOOK SHARE -->
+    <script language="javascript">
+        function fbshareCurrentPage() { window.open("https://www.facebook.com/sharer/sharer.php?u=" + escape("http://ruukurniawan.xyz/") + "&t=", 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600'); return false; }
+    </script>
 
 
     <!---------------------------------------------------------------------------------------------->
