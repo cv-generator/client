@@ -47,7 +47,7 @@ Vue.component('navbar', {
                         <a class="nav-link" href="#" v-on:click="getLoginPage">Login</a>
                     </li>
                     <li class="nav-item" v-if="isLoggedIn">
-                        <a class="nav-link" href="#" v-on:click="getDashboardPage">Dashboard</a>
+                        <a class="nav-link" href="#" v-on:click="getDashboardPage">Create</a>
                     </li>
                     <li class="nav-item" v-if="isLoggedIn" v-on:click="logout">
                         <a class="nav-link" href="#">Logout</a>
