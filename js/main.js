@@ -4,14 +4,15 @@ let app = new Vue({
     el: '#app',
     data: {
         isLoggedIn: false,
-        currentPage: 'homepage'
+        currentPage: 'homepage',
+        preview: false,
     },
     created() {
         const token = localStorage.getItem('token')
         if (token) this.verify()
     },
     methods: {
-        verify: function () {
+        verify: function() {
             let token = localStorage.getItem('token')
             axios
                 .post(`${serverUrl}/verify`, { token }, { headers: { token } })
@@ -26,6 +27,13 @@ let app = new Vue({
                     localStorage.removeItem('UserId')
                     localStorage.removeItem('email')
                 })
+
+
+
+        },
+        previewToggle() {
+            this.preview = !this.preview;
         }
     }
+
 })
