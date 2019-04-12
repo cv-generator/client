@@ -159,5 +159,53 @@
       </section>
     </div>
   </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+  <script>
+    // Script tag string
+    let scripts = Array.prototype.map.call(
+      document.getElementsByTagName('script'), 
+      script => script.outerHTML
+    ).join('')
+    
+    let body = '<body>'
+      + (document.getElementsByClassName('page')[0]).outerHTML
+      + scripts
+      + '<\/body>'
+    
+    // Stylesheet string
+    let head = '<head><style>'
+      + Array.prototype.map.call(
+          document.styleSheets,
+          stylesheet => Array.prototype.map.call(
+            stylesheet.cssRules,
+            rule => rule.cssText
+          ).join('')
+        ).join('')
+      + '<\/style><\/head>'
+    
+    axios.post('https://selectpdf.com/api2/convert/', {
+      key: '3f4dcbc8-da33-49b2-946d-35d4273e4eb5',
+      html: head + body // string to print into pdf
+    },{
+      "Content-Type": "application/json",
+      responseType: "arraybuffer"
+    })
+      .then(({ data }) => {
+        let pdf = new Blob([data], { type: 'application/pdf'})
+        
+        // pdf file url
+        let pdfFileURL = window.URL.createObjectURL(pdf);
+
+        let fileName = 'document.pdf'
+        
+        let a = document.createElement("a");
+        document.body.appendChild(a);
+        a.style = "display: none";
+        a.href = pdfFileURL;
+        a.download = fileName;
+        a.click(); 
+      })
+      .catch(err => console.log(err))
+  </script>
 </body>
 </html>
