@@ -23,6 +23,9 @@ Vue.component('navbar', {
         },
         getRegisterPage() {
             this.$emit('get-register-page')
+        },
+        getDashboardPage() {
+            this.$emit('get-dashboard-page')
         }
     },
     template: `
@@ -34,14 +37,17 @@ Vue.component('navbar', {
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#" v-on:click="getHomePage">Home <span class="sr-only">(current)</span></a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" v-on:click="getHomePage">Home</a>
                     </li>
                     <li class="nav-item" v-if="!isLoggedIn">
                         <a class="nav-link" href="#" v-on:click="getRegisterPage">Register</a>
                     </li>
                     <li class="nav-item" v-if="!isLoggedIn">
                         <a class="nav-link" href="#" v-on:click="getLoginPage">Login</a>
+                    </li>
+                    <li class="nav-item" v-if="isLoggedIn">
+                        <a class="nav-link" href="#" v-on:click="getDashboardPage">Dashboard</a>
                     </li>
                     <li class="nav-item" v-if="isLoggedIn" v-on:click="logout">
                         <a class="nav-link" href="#">Logout</a>

@@ -37,6 +37,7 @@
         v-on:get-home-page="currentPage = 'homepage'"
         v-on:get-login-page="currentPage = 'login'"
         v-on:get-register-page="currentPage = 'register'"
+        v-on:get-dashboard-page="currentPage = 'dashboard'"
         >
         </navbar>
         <!-- END OF NAVBAR -->
@@ -66,7 +67,9 @@
 
         <!-- DASHBOARD -->
         <center>
-            <h1 v-if="currentPage == 'dashboard'">Dashboard</h1>
+            <div v-if="currentPage == 'dashboard'">
+                <h1>Dashboard</h1>
+            </div>
         </center>
         <!-- END OF DASHBOARD -->
 
