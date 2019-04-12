@@ -53,7 +53,7 @@ Vue.component('navbar', {
                         <a class="nav-link" href="#">Logout</a>
                     </li>
                     <li>
-                    <a href="javascript:fbshareCurrentPage()" target="_blank" alt="Share on Facebook"><img
+                    <a v-if="isLoggedIn" href="javascript:fbshareCurrentPage()" target="_blank" alt="Share on Facebook"><img
                         src="https://assets.cobaltnitra.com/teams/repository/export/685/994e08a161005809f00505692530e/685994e08a161005809f00505692530e.png"
                         style="width: 30px;" alt="" /></a>
                     </li>
