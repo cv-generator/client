@@ -178,6 +178,7 @@ section .ar-button {
 }
 
 #preview-button {
+    display: flex;
     position: fixed;
     bottom: 48px;
     right: 48px;

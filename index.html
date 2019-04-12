@@ -13,10 +13,10 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <!-- BOOTSWATCH -->
-    <link rel="stylesheet" href="https://bootswatch.com/4/lux/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="https://bootswatch.com/4/lux/bootstrap.min.css"> -->
 
     <!-- QUICKSAND GOOGLE FONT -->
-    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet"> -->
 
     <!-- CSS -->
     <link rel="stylesheet" href="./css/style.css">
@@ -62,7 +62,7 @@
         </center>
         <!-- END OF DASHBOARD -->
         <!-- FORM -->
-        <div class="page">
+        <div class="page" v-if="isLoggedIn">
             <identity-field v-bind:preview="preview"></identity-field>
             <div class="main">
 
@@ -79,9 +79,15 @@
         </div>
         <!-- END FORM -->
 
+        <!-- PUBLISH BUTTON -->
+        <!-- END PUBLISH BUTTON -->
+
 
         <!-- BUTTON FIX PREVIEW -->
-        <button id="preview-button" type="button" v-on:click.prevent="previewToggle">PREVIEW</button>
+        <div id="preview-button">
+            <button type="button" v-on:click.prevent="publish" v-if="preview && isLoggedIn">CONVERT</button>
+            <button type="button" v-on:click.prevent="previewToggle" v-if="isLoggedIn">PREVIEW</button>
+        </div>
         <!-- END  BUTTON FIX PREVIEW  -->
 
 
