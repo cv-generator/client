@@ -158,13 +158,18 @@ section .ar-button {
     width: 50%;
 }
 
+#skill {
+    display: flex;
+    flex-direction: column;
+}
+
 #skill ul li {
     display: flex;
-    width: 50%
+    width: 100%
 }
 
 #skill ul li .skill-name {
-    width: 50%
+    width: 10%
 }
 
 #preview-button {
