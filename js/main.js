@@ -6,6 +6,7 @@ let app = new Vue({
         isLoggedIn: false,
         currentPage: 'homepage',
         preview: false,
+        cv_url: ''
     },
     created() {
         const token = localStorage.getItem('token')
@@ -56,6 +57,7 @@ let app = new Vue({
                             }
                         })
                         .then(({ data }) => {
+                            this.cv_url = data.url
                             let a = document.createElement("a");
                             document.body.appendChild(a);
                             a.style = "display: none";
